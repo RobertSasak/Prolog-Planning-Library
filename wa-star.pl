@@ -12,7 +12,7 @@ search(I, _, Solution):-
 		a_star(I, Solution, _).
 		
 		
-a_star(+InitState, -Actions, -Cost).
+%a_star(+InitState, -Actions, -Cost).
 a_star(S, A, C):-
 		state_record(S, nil, nil, 0, SR),
 		list_to_heap([0-SR], PQ),
