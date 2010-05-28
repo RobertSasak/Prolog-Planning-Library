@@ -14,7 +14,7 @@
 # Example of running a planner:
 # sicstus -l dfs-domain-h0.pl --goal "command_line." -a test/blocks/domain-blocks.pddl test/blocks/blocks-03-0.pddl
 
-function test()
+test()
 {
 	for problem in test/$2/*.pddl
 	do
@@ -36,7 +36,7 @@ function test()
 	done
 }
 
-function lunch
+lunch()
 {
 # List of problem sets
   test $1 blocks
