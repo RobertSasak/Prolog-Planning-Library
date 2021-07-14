@@ -19,7 +19,8 @@ make_solution(S, S).
 step(State, ActionDef, NewState):-
 		get_action(A, ActionDef),
 		get_precondition(A, P),    mysubset(P, State),	% choose suitable action
-		get_negativ_effect(A, NE), ord_subtract(State, NE, State2),	
+		get_negativ_effect(
+				      A, NE), ord_subtract(State, NE, State2),	
 		get_positiv_effect(A, PE), ord_union(State2, PE, NewState).
 
 is_goal(S):-

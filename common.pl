@@ -11,7 +11,22 @@ command_line:-
 		prolog_flag(argv, [D,P]),
 		solve_files(D, P),
 		halt.
-		
+
+% This predicate does almost the same as solve_files, but it returns the 
+% amount of states the solution has, and does not display the statistics.
+% This is used for testing, in testing.pl.
+% get_solution(+Domainfile, ProblemFile, -LengthOfSoltuion)
+get_solution(DomainFile, ProblemFile, L) :- 
+		parseDomain(DomainFile, DD, _),
+		parseProblem(ProblemFile, PP, _),
+		term_to_ord_term(DD, D),
+		term_to_ord_term(PP, P),
+		reset_statistic,
+		!,
+		time_out(solve(D, P, S), 3000, _Result), % time limit for a planner
+		length(S, L),
+		!.
+
 % Reads files and set timelimit for planner
 solve_files(DomainFile, ProblemFile):-
 		parseDomain(DomainFile, DD, _),
@@ -25,10 +40,10 @@ solve_files(DomainFile, ProblemFile):-
 		!.
 
 
-		
+
 %solve(+Domain, +Problem, -Solution).
 % Set domain and problem on blackboard
-solve(D, P, Solution):-
+solve(D, P, Solution):- 
 		get_init(P, I),		bb_put(initState, I),
 		get_goal(P, G),		bb_put(goalState, G),
 		get_metric(P, M),		bb_put(metric, M),
@@ -176,7 +191,7 @@ reset_statistic:-
 
 show_statistic:-
 		bb_get(stat_nodes, N),
-		bb_get(startTime, T0),
+		bb_get(staxrtTime, T0),
 		statistics(runtime, [T1,_]),
 		statistics(memory, [M, _]),
 		T is T1-T0,
@@ -274,15 +289,46 @@ solution(SR, _, L, L):-
 solution(SR, V, R, L):-
 		state_record(_, PS, AD, _, SR),
 		state_record(PS, _, _, _, Previous),
-		member(Previous, V),
+		member(Previous, V), 
+		
+		% Step 5 of demonstration.pl
+%		nl, print('Previous nodes: '), nl, 
+%		findall(Prev, (state_record(PS, _, _, _, Prev), member(Prev, V)), Trail),
+%		print_list_of_nodes(Trail),
+		
 		solution(Previous, V, [AD|R], L).
 
+% This added predicate checks for the minimal node, so that an optimal
+% solution will alway be given.
+%solution2(+StateRecord, +Visited, -ListOfActions) - Tobias
+solution2(SR, V, L):-
+		solution2(SR, V, [], L).
+solution2(SR, _, L, L):-
+		state_record(_, nil, nil, _, SR), !.
+solution2(SR, V, R, L):-
+		state_record(_, PS, AD, _, SR),
+		findall(Prev, (state_record(PS, _, _, _, Prev), member(Prev, V)), Trail),
+		choose_min_prev(Trail, Min), 
+		solution2(Min, V, [AD|R], L).
 
+
+% When there are more nodes to backtrack to, this chooses the one with lowest "Deep" (should be A-star value instead)
+%choose_min_prev(+List, -Minimum) - Tobias
+choose_min_prev([H|T], Min) :- choose_min_prev(T, H, Min).
+
+choose_min_prev([], Min, Min) :- !.
+choose_min_prev([H|T], Current, Min) :-
+		state_record(_, _, _, D_Current, Current),
+		state_record(_, _, _, D_New, H),
+		D_New < D_Current,
+		choose_min_prev(T, H, Min).
+choose_min_prev([_|T], Current, Min) :-
+		choose_min_prev(T, Current, Min).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Handling mutexes
 
- make_mutex(M):-
+make_mutex(M):-
 		bagof(R1, forbiden_pair(R1), MA),
 		bagof(R2, forbiden_pair(MA, R2), MB),
 %		writel(MA),nl,
