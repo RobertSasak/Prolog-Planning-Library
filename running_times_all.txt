@@ -1,0 +1,243 @@
+Some running times for the tests, to get an initial idea of how hard the 
+problems are, and how the heuristics for a-star behave. 
+
+These times were recorded _before_ adding the "weighted_check", which means
+nodes were never revisited. This makes the algorithms faster, but admissible 
+and non-monotonic algorithms does not return optimal solutions. 
+
+Using my_pop. 
+
+GRIPPER (Best: h_add)
+
+dfs
+gripper2 0.016 688 18677312 5 
+gripper4 7.422 1066906 18677312 11 
+
+h_0
+gripper2 0.016 24 45219392 5
+gripper4 0.156 247 45219392 11
+gripper6 7.688 1842 45219392 17
+
+h_diff
+gripper2 0.016 21 45219392 5
+gripper4 0.265 243 45219392 11
+gripper6 9.532 1838 45219392 17 
+
+h_add
+gripper2 0.000 16 45219392 5 
+gripper4 0.235 146 45219392 11
+gripper6 2.672 548 45219392 17 
+gripper8 35.063 1840 45219392 23
+
+h_max
+gripper2 0.016 19 18677312 5
+gripper4 0.219 240 18677312 11 
+gripper6 8.702 1840 45219392 17
+
+BLOCKS (Best: h_max)
+
+dfs
+blocks-3-0 0.000 99 18677312 4
+blocks-4-0 0.063 3963 18677312 6 
+blocks-4-1 0.031 2820 18677312 10 
+blocks-4-2 0.031 2423 18677312 6 
+blocks-5-0 11.375 1214631 18677312 12
+
+h_0
+blocks-3-0 0.016 18 45219392 4 
+blocks-4-0 0.015 115 45219392 6 
+blocks-4-1 0.016 73 45219392 10 
+blocks-4-2 0.000 73 45219392 6 
+blocks-5-0 0.672 685 45219392 12
+blocks-5-1 0.625 641 45219392 10
+blocks-5-2 0.734 802 45219392 16
+blocks-6-0 18.328 3095 66715200 12
+
+h_diff
+blocks-3-0 0.000 14 66715200 4
+blocks-4-0 0.000 58 66715200 6 
+blocks-4-1 0.000 37 66715200 10 
+blocks-4-2 0.000 32 66715200 6
+blocks-5-0 0.094 248 66715200 12 
+blocks-5-1 0.141 289 66715200 10 
+blocks-5-2 0.375 585 66715200 16 
+blocks-6-0 0.203 332 66715200 12
+
+h_add
+blocks-3-0 0.000 6 66715200 4
+blocks-4-0 0.000 12 66715200 6 
+blocks-4-1 0.000 15 66715200 10
+blocks-4-2 0.000 16 66715200 6
+blocks-5-0 0.016 28 66715200 12
+blocks-5-1 0.031 43 66715200 10 
+blocks-5-2 0.047 77 66715200 16
+blocks-6-0 0.125 136 66715200 12 
+
+h_max 
+blocks-3-0 0.000 12 66715200 4 
+blocks-4-0 0.015 50 66715200 6 
+blocks-4-1 0.016 44 66715200 10 
+blocks-4-2 0.015 41 66715200 6
+blocks-5-0 0.188 269 66715200 12 
+blocks-5-1 0.203 290 66715200 10 
+blocks-5-2 0.422 499 66715200 16 
+blocks-6-0 1.422 705 66715200 12
+
+ELEVATOR (Best: h_add)
+
+dfs
+mixed-f2-p1-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.000 8 45219392 4
+mixed-f2-p1-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.000 8 45219392 4 
+mixed-f4-p2-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.016 2243 45219392 7 
+mixed-f4-p2-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.047 5340 45219392 7 
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 23.015 3957999 45219392 10 
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 11.297 2128040 45219392 10
+
+h_0
+mixed-f2-p1-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.015 4 45219392 4 
+mixed-f2-p1-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.000 4 45219392 4 
+mixed-f4-p2-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.000 39 45219392 7
+mixed-f4-p2-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.000 36 45219392 7
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.141 262 45219392 10
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.140 250 45219392 10
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 7.625 1427 45219392 14
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 8.860 1507 45219392 15 
+
+h_diff
+mixed-f2-p1-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.016 4 18677312 4
+mixed-f2-p1-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.000 4 18677312 4 
+mixed-f4-p2-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.000 33 18677312 7 
+mixed-f4-p2-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.000 33 18677312 7
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.125 197 18677312 10 
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.125 218 18677312 10
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 6.704 1216 31915584 14 
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 7.234 1295 31915584 15 
+
+h_add
+mixed-f2-p1-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.000 4 31915584 4 
+mixed-f2-p1-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.000 4 31915584 4 
+mixed-f4-p2-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.015 24 31915584 7 
+mixed-f4-p2-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.000 25 31915584 7
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.110 123 31915584 10
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.140 138 31915584 11
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.985 284 31915584 14 
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 1.640 373 31915584 15
+mixed-f10-p5-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 21.297 1014 45219392 17
+mixed-f10-p5-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 46.938 1501 45219392 18
+
+h_max
+mixed-f2-p1-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.016 4 18677312 4
+mixed-f2-p1-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.000 4 18677312 4 
+mixed-f4-p2-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.000 28 18677312 7 
+mixed-f4-p2-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.016 24 18677312 7 
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.125 171 18677312 10 
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.125 167 18677312 10
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 6.296 1100 31915584 14 
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 6.390 1165 31915584 15 
+mixed-f10-p5-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 282.266 5567 249560640 17 
+
+HANOI (Best: h_diff)
+
+dfs
+hanoi_test2 0.000 8 18677312 2 
+hanoi3 0.000 984 18677312 7
+hanoi4 144.765 15378251 18677312 15 
+
+h_0
+hanoi_test2 0.000 3 18677312 2
+hanoi3 0.000 21 18677312 7 
+hanoi4 0.000 67 18677312 15
+hanoi5 0.078 219 18677312 31
+hanoi6 0.860 681 18677312 63
+hanoi7 8.203 2080 45219392 127
+hanoi8 91.032 6369 639827456 255
+
+blocks-6-1 41.798 5361 158072384 10
+
+h_diff
+hanoi_test2 0.000 3 46267904 2 
+hanoi3 0.000 18 46267904 7
+hanoi4 0.000 58 46267904 15 
+hanoi5 0.047 184 46267904 31 
+hanoi6 0.688 619 46267904 63
+hanoi7 7.203 1880 46267904 127
+hanoi8 81.220 5905 250609152 255
+
+blocks-6-1 4.532 1487 31915584 10
+
+h_add
+hanoi_test2 0.016 3 46267904 2
+hanoi3 0.000 13 46267904 7 
+hanoi4 0.016 43 46267904 15 
+hanoi5 0.141 146 46267904 31 
+hanoi6 1.187 519 46267904 64
+hanoi7 8.656 1633 46267904 129
+
+blocks-6-1 0.031 32 66715200 10
+
+h_max
+hanoi_test2 0.000 3 46267904 2 
+hanoi3 0.016 18 46267904 7 
+hanoi4 0.015 57 46267904 15 
+hanoi5 0.204 217 46267904 33 
+hanoi6 1.156 597 46267904 63 
+hanoi7 9.328 1908 46267904 128
+
+blocks-6-1 11.828 2040 45219392 10 
+
+ELEVATOR ELABORATED
+
+dfs
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 21.016 3957999 67763712 10
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r1 65.422 11803426 67763712 11 
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r2 10.906 1799859 67763712 10
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r3 13.453 2021340 67763712 10
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 14.125 2128040 67763712 10
+
+h_0
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.156 262 66715200 10
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r1 0.157 266 66715200 11
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r2 0.109 218 66715200 10 
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r3 0.141 240 66715200 10 
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.140 250 66715200 10 
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 7.766 1427 66715200 14 
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r1 7.437 1383 66715200 13
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r2 7.797 1426 66715200 15 
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r3 7.687 1435 66715200 15 
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 7.719 1507 66715200 15 
+
+h_diff
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.109 197 66715200 10 
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r1 0.187 263 66715200 11
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r2 0.110 180 66715200 10 
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r3 0.140 216 66715200 10 
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.157 218 66715200 10 
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 7.093 1216 66715200 14 
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r1 8.782 1361 66715200 13 
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r2 7.484 1319 66715200 15 
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r3 8.469 1372 66715200 15
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 7.625 1295 66715200 15
+
+h_add
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.157 123 18677312 10 
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r1 0.156 147 18677312 11 
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r2 0.047 68 18677312 11
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r3 0.140 123 18677312 10 
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.203 138 18677312 11 
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 1.032 284 18677312 14 
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r1 1.156 319 18677312 13
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r2 1.016 300 18677312 15
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r3 2.171 406 18677312 15 
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 1.782 373 18677312 15
+
+h_max
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 0.125 171 66715200 10 
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r1 0.172 209 66715200 11
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r2 0.110 152 66715200 10
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r3 0.140 184 66715200 10
+mixed-f6-p3-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 0.141 167 66715200 10
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r0 6.187 1100 66715200 14
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r1 7.125 1121 66715200 13
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r2 6.110 1158 66715200 15 
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r3 6.047 1145 66715200 15
+mixed-f8-p4-u0-v0-g0-a0-n0-a0-b0-n0-f0-r4 5.922 1165 66715200 15

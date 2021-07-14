@@ -9,10 +9,10 @@ h(S, E):-
 
 relax(_, [], 0):-!.
 relax(S, G, E):-
-    subtract(G, S, Delta),
+    		subtract(G, S, Delta),
 		setof(P, relax_step(S, P), RS),
 		ord_union([S|RS], NS),
-    relax(NS, Delta, NE),
+    		relax(NS, Delta, NE),
 		length(Delta, LD),
 		E is LD+NE.
 
@@ -20,3 +20,4 @@ relax_step(State, PE):-
 		get_action(A),	get_precondition(A, P),
 		mysubset(P, State),
 		get_positiv_effect(A, PE).
+
