@@ -1,21 +1,4 @@
 % Debugging and testing file
-% Ideas for a-star:
-% The \+ member test in next_node seems to always pass. Is it on the right form?
-
-% The \+ my_ord_member test in next_node seems to scale linearly, when it could be logarithmic / constant (hashmap)
-
-% Make the visited nodes update properly
-
-% Visited should be a hashmap
-
-% Nodes that gets popped should not be in Visited, and should not be added twice to visited.
-      
-% I Dont think this is right:
-% It may be that as soon as a solution is found, the algorithm cterminates. However, it should wait until the
-% solution is popped, rather than discovered (highly speculative, I do not know yet). 
-% Why does h_diff always add 1 to the value?
-
-  
 
 % Prints Queue (List of nodes)
 print_queue(H) :- 

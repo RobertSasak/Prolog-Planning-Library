@@ -1,8 +1,4 @@
-% Dostupne veci:
-%step(+State, -NewState)
-%is_goal(State)
-%h(State, Value) 
-%repeating(+State, +AnotherState)
+% This file has some new predicates for fixing the bugs -Tobias
 
 :-use_module(library(ordsets)).
 :-use_module(library(heaps)).
