@@ -1,0 +1,56 @@
+sliding_test:
+
+a-star:
+backward h0: 0.343
+backward add: Not running
+backward diff: 0.313
+backward max: 0.359
+forward h_addb: Not running
+forward h_maxb: Not running
+backward h_addb: 0.078
+backward h_maxb: 0.078
+backward h_addb: 0.79
+backward h_maxb: 0.109
+
+backward dfs: Not running
+backward bfs: Not running
+
+sliding2x2:
+
+a-star
+backward h_add: Not running
+backward h_addb: 0.875
+backward h_maxb: 1.063
+
+forward dfs: 0.000
+forward bfs: 0.000
+
+sliding3x3: 
+
+
+forward dfs (all heuristics): Not running
+forward bfs: 0.328
+forward iddfs 0.031
+
+wa-star, forward:
+h_0: 0.329
+h_add 0.125
+h_diff: 0.00
+h_max: 0.062
+
+
+a-star, forward:
+h_0: 0.320 328 1029963264 9
+h_diff: 0.01 41 1029963264 9
+h_add: 0.141 20 1029963264 9
+h_max: 0.453 99 1029963264 9 
+
+Sliding 3x3 With my_pop:
+a-star forward:
+h_0:  0.547 437 1029963264 9 
+h_diff: 0.015 41 1029963264 9
+h_add: 0.110 20 1029963264 9
+h_max: 0.453 99 1029963264 9
+
+
+

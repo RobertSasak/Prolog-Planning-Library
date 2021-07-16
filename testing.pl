@@ -20,7 +20,7 @@
 :- use_module(library(plunit)).
 
 :-[readFile, parseProblem, parseDomain, common].
-:- ['a-star', forward, h_0].
+:- ['a-star', forward, h_max].
 %:- ['a-star', forward, h_add].
 %:- ['mutants/a-star_mutant2', forward, h_0].
 %:- ['a-star', 'mutants/forward_mutant1', h_0].

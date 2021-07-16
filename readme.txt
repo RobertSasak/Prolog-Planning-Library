@@ -51,7 +51,7 @@ https://cs.stackexchange.com/questions/53956/monotone-property-of-heuristic-in-a
 Why admissible (non-overestimating) heuristic run optimal: 
 https://en.wikipedia.org/wiki/Admissible_heuristic
 
-General information about a-star in nice slides:
+General information about a-star in nice slides: 
 https://courses.cs.duke.edu/fall11/cps149s/notes/a_star.pdf
 
 Some other nice slides:

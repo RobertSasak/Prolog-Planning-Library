@@ -1,3 +1,5 @@
+% This file has some new predicates for debugging and fixing the bugs -Tobias
+
 :-use_module(library(timeout)).
 :-use_module(library(lists)).
 
