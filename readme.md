@@ -1,3 +1,6 @@
+Sparse branch containts just the files neseccary to explain and fix the bugs, master branch
+contains the same, but also with all of Robert Sasaks other files. 
+
 Here is an overview of the changes done to the original files of Robert Sasak. 
 There were some bugs in the code that I have tried to fix. I also made a testing
 file, and some mutants of the code to see how well the tests work.
