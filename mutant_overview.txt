@@ -40,4 +40,4 @@ Not updating the Visited list (loops).
 
 Not checking for preconditions in step.
 
-Not checking the positive effects in step.
+Not checking the positive effects in step. 
