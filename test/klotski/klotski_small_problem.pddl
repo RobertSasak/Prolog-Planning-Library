@@ -1,0 +1,71 @@
+(define (problem koltski_problem_small)
+(:domain klotski_small)
+(:objects p1 p2 p3 p4 p5 p6 p7 p8 p9 p10
+		  p11 p12 p13 p14 p15 p16 p17 p18 p19 p20
+		  s1)
+		  
+(:init 
+
+(small s1)
+
+(under p5 p1)
+(under p9 p5)
+(under p13 p9)
+(under p17 p13)
+(under p6 p2)
+(under p10 p6)
+(under p14 p10)
+(under p18 p14)
+
+(under p7 p3)
+(under p11 p7)
+(under p15 p11)
+(under p19 p15)
+(under p8 p4)
+(under p12 p8)
+(under p16 p12)
+(under p20 p16)
+
+(right p2 p1)
+(right p3 p2)
+(right p4 p3)
+(right p6 p5)
+(right p7 p6)
+(right p8 p7)
+
+(right p10 p9)
+(right p11 p10)
+(right p12 p11)
+(right p14 p13)
+(right p15 p14)
+(right p16 p15)
+
+(right p18 p17)
+(right p19 p18)
+(right p20 p19)
+
+(at s1 p1)
+
+(free p2)
+(free p3)
+(free p4)
+(free p5)
+(free p6)
+(free p7)
+(free p8)
+(free p9)
+(free p10)
+(free p11)
+(free p12)
+(free p13)
+(free p14)
+(free p15)
+(free p16)
+(free p17)
+(free p18)
+(free p19)
+(free p20)
+)
+
+(:goal (at s1 p20))
+)
