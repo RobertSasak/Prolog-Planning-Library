@@ -1,4 +1,6 @@
 % This file has some new predicates for fixing the bugs -Tobias
+% These are weighted_member, and my_pop. See the documentation in 
+% the topic_branch_files folder. 
 
 :-use_module(library(ordsets)).
 :-use_module(library(heaps)).
@@ -40,18 +42,20 @@ a_star(PQ, V, Solution, C):-
 		a_star(NPQ, NV, Solution, C).
 
 %next_node(+StateRecord, +Queue, +Visited, -EstimateDeep, -NewStateRecord)
-next_node(SR, Q, V, E, NewSR):-
+next_node(SR, _Q, V, E, NewSR):-
 		state_record(S, _, _, D, SR),
 		step(S, A, NewS),
-		state_record(NewS, _, _, _, Temp),		
+		% It does not seem like this does anything, it should be unecessary
+		% with the new predicates: 
+%		state_record(NewS, _, _, _, Temp),		
 %		\+ my_ord_member(NewS, V),
-		heap_to_list(Q, PQL),
-%		\+ member(Temp, PQL), % Is this working?
+%		heap_to_list(Q, PQL),
+		
 		h(S, H),
 		E is H+D,
 		ND is D+1,
-		% \+ my_ord_member(NewS, V),
-		\+ weighted_member(NewS, V, ND),
+%		\+ my_ord_member(NewS, V), % This is faster
+		\+ weighted_member(NewS, V, ND), % This is essential for non-monotone heuristics
 		state_record(NewS, S, A, ND, NewSR).
 
 %add_list_to_heap(+OldHeap, List, NewHeap)
@@ -85,8 +89,8 @@ weighted_member(S, [_|T], K) :-
 my_pop(OH, K, SR, NH, V) :-
 		get_from_heap(OH, K, SR, NH),
 		SR = [S, _, _, D], 
-%		\+ my_ord_member(S, V),
-		\+ weighted_member(S, V, D), 
+%		\+ my_ord_member(S, V), % This is faster
+		\+ weighted_member(S, V, D), % This is essential for non-monotone heuristics
 		!.
 my_pop(OH, K, D, NH, V) :-
 		get_from_heap(OH, _, _, CurrentHeap), 

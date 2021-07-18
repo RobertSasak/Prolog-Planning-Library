@@ -1,0 +1,135 @@
+This is a text file that contains running time of the algorithms before
+and after the bug fix. See the "demonstration.pddl" file.
+
+solution: The inital code of Robert Sasak
+solution2: The solution backtracking algorithm is altered so that
+	the actual best solution is found, rather than an arbritralely
+	one. The code still runs with the uncessary re-visits.
+my_pop: The algorithm no longer re-visits nodes, and runs more efficiently.
+	Therefore, the nodes explored and computation time is lower. I think 
+	it does not matter if you run this with solution or solution2. The "my_pop"
+	replaces the "get_from_heap" in the a-star, see the "demonstration" file. 
+	
+Note that the heuristics (h_add, h_diff, h_max) are not complete, so they may
+not yield the optimal solution, even when implemented correctly. h_0 means
+no heuristics, so the algorithm is equivalent to dijkstra. 
+
+The output is on this format: 
+test_name running_time nodes_explored bits_used length_of_solution
+ 
+ solution h_0
+hanoi_test2 0.000 4 18677312 3 
+hanoi3 0.000 39 18677312 9 
+hanoi4 0.016 135 18677312 18 
+hanoi5 0.344 501 18677312 37 
+hanoi6 3.048 1437 23723584 76
+hanoi7 35.843 4612 158072384 151
+hanoi8 424.610 14380 1029963264 310 
+
+blocks-6-1 230.141 14177 
+ 
+ solution h_diff
+hanoi_test2 0.000 4 158072384 3
+hanoi3 0.000 24 158072384 8 
+hanoi4 0.016 85 158072384 17 
+hanoi5 0.125 294 158072384 35 
+hanoi6 1.766 1014 158072384 72 
+hanoi7 19.078 3229 158072384 149
+hanoi8 220.547 10108 639827456 294
+
+blocks-6-1 14.376 2830 66715200 10
+
+solution h_add
+hanoi_test2 0.016 3 158072384 2 
+hanoi3 0.000 17 158072384 8
+hanoi4 0.046 64 158072384 16 
+hanoi5 0.266 266 158072384 35
+hanoi6 1.953 854 158072384 74 
+hanoi7 19.016 2894 158072384 148
+
+blocks-6-1 0.047 32 18677312 10
+
+solution h_max
+hanoi_test2 0.000 3 158072384 2 
+hanoi3 0.000 26 158072384 9 
+hanoi4 0.031 98 158072384 17 
+hanoi5 0.266 337 158072384 37 
+hanoi6 2.765 1199 158072384 71
+hanoi7 41.079 3889 158072384 150 
+
+blocks-6-1 15.374 2589 45219392 10
+
+ 
+my_pop h_0
+hanoi_test2 0.000 3 18677312 2
+hanoi3 0.000 21 18677312 7 
+hanoi4 0.000 67 18677312 15
+hanoi5 0.078 219 18677312 31
+hanoi6 0.860 681 18677312 63
+hanoi7 8.203 2080 45219392 127
+hanoi8 91.032 6369 639827456 255
+
+blocks-6-1 41.798 5361 158072384 10
+
+my_pop h_diff
+hanoi_test2 0.000 3 46267904 2 
+hanoi3 0.000 18 46267904 7
+hanoi4 0.000 58 46267904 15 
+hanoi5 0.047 184 46267904 31 
+hanoi6 0.688 619 46267904 63
+hanoi7 7.203 1880 46267904 127
+hanoi8 81.220 5905 250609152 255
+
+blocks-6-1 4.532 1487 31915584 10
+
+my_pop h_add
+hanoi_test2 0.016 3 46267904 2
+hanoi3 0.000 13 46267904 7 
+hanoi4 0.016 43 46267904 15 
+hanoi5 0.141 146 46267904 31 
+hanoi6 1.187 519 46267904 64
+hanoi7 8.656 1633 46267904 129
+
+blocks-6-1 0.031 32 66715200 10
+
+my_pop h_max
+hanoi_test2 0.000 3 46267904 2 
+hanoi3 0.016 18 46267904 7 
+hanoi4 0.015 57 46267904 15 
+hanoi5 0.204 217 46267904 33 
+hanoi6 1.156 597 46267904 63 
+hanoi7 9.328 1908 46267904 128
+
+blocks-6-1 11.828 2040 45219392 10 
+
+solution2 h_0
+hanoi_test2 0.000 4 66715200 2 
+hanoi3 0.000 39 66715200 7 
+hanoi4 0.032 135 66715200 15 
+hanoi5 0.328 501 66715200 31 
+hanoi6 2.906 1437 66715200 63
+hanoi7 34.920 4612 158072384 127 
+                           
+ solution2 h_diff
+hanoi_test2 0.000 4 66715200 2
+hanoi3 0.000 24 66715200 7 
+hanoi4 0.000 85 66715200 15 
+hanoi5 0.109 294 66715200 31 
+hanoi6 1.812 1014 66715200 63 
+hanoi7 18.578 3229 66715200 127
+
+solution2 h_add
+hanoi_test2 0.000 3 158072384 2
+hanoi3 0.016 17 158072384 7 
+hanoi4 0.031 64 158072384 15
+hanoi5 0.250 266 158072384 31
+hanoi6 2.047 854 158072384 63
+hanoi7 19.093 2894 158072384 127
+
+solution2 h_max
+hanoi_test2 0.016 3 158072384 2
+hanoi3 0.000 26 158072384 7 
+hanoi4 0.031 98 158072384 15
+hanoi5 0.250 337 158072384 31
+hanoi6 2.735 1199 158072384 63
+hanoi7 29.359 3889 158072384  127
