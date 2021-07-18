@@ -1,64 +1,65 @@
-Sparse branch containts just the files neseccary to explain and fix the bugs, master branch
-contains the same, but also with all of Robert Sasaks other files. 
+See the topic_branch_folder for documentation for the bug fixes and new files.
+Line 23 and 35 in a-star can be changed from my_pop to get_from_heap, in
+addition to 58 and 93 from weighted_member to my_ord_member and line 32 from
+solution2 to solution, for the code to work as it did previously.
+Run the testing.pl file for outputs on how the heuristics performs (with any
+heuristic and predicates in a-star you like).
+- Tobias Opsahl, tobiasop@gmail.com
 
-Here is an overview of the changes done to the original files of Robert Sasak. 
-There were some bugs in the code that I have tried to fix. I also made a testing
-file, and some mutants of the code to see how well the tests work.
+ABOUT
+-----
+This piece of software is a final implementation of my bachelor thesis. In my
+theasis I tried to compare different aproaches of planning. Especially two
+methods of classical planinng: forward and backward.
+Those two methods were implemented with five different ways of searching
+state space:
+- DFS
+- BFS
+- IDDFS
+- A*
+- WA*, where W=5
 
-Here is a brief overview of the new files, followed by a brief explanation of what
-is done in them (the files should be pretty well documented themselves): 
+And there are also four heuristics:
+- h0 - no heuristic at all
+- h_diff
+- h_add
+- h_max
 
-demonstration.pl: An elaborate overview of the initial bug, and how it was found and fixed.
+By combining any meaningful method, search algorithm and heuristic we got
+several planners e.g. dfs-forward-h-diff.
 
-demonstration_drawing.pdf: A supplement drawing to display the bug. 
-
-launch.pl: An easy way of running the algorithms on the problems. 
-
-testing.pl: A testing suite to check if a file and algorithm returns an optimal solution. 
-
-extra.pl: Predicates used for debugging, mostly ways of printing nodes and 
-lists in a nice way.
-
-running_times_hanoi.txt: Compares how a-star and its heuristics runs on hanoi, 
-before and after fixing the initial bug. Does not test the second bug. 
-
-mutant_overview.txt: An overview of the mutants I made, and how they get tested.
-
-running_times_all.txt: An overview of how a-star and its heuristics (h_0, h_diff, 
-h_add and h_max) run on the problems (time and length of solution).
-
-I the tests folder, a sliding puzzle and klotski puzzle domain and problems are added.
-They correspond to "8 puzzle / 15 puzzle / 16 puzzle", and the klotski sliding puzzle. 
+All those planners were tested on five domains: blocks, elevators, freecell,
+gripper and hanoi.
 
 
-Description of project: Robert Sasak had implemented a parser for planning problems (PDDL),
-and some algorithms to solve them. However, it was observed that a-star with h_0 (no heuristic,
-equivelant of dijkstra) did not run optimal on hanoi, which it should. I tried to find the bug
-and fix it, see demonstration.pl.
-The bug was that visited nodes got added to the queue, and when they got popped they got re-visited. 
-When the solution was found, the path found by backtracking could therefore have multiple options,
-and an option was chosen arbitrarily rather than optimally. By using the new predicate "my_pop" instead
-of "get_from_heap" directly, this got fixed. This also substantially improved the running times. 
-There was later found another minor bug. For non-monotone admissible heuristics, nodes may need to be
-re-visited (with lower cost the second time). Therefore, "weighted_member" was implemented instead of
-"my_ord_member". Note that this predicate increases the running time, but makes h_max a complete heuristic. 
+INSTALATION
+-----------
+There is no installation procedure, simply copy whole directory to your
+harddrive. Make sure that you have already installed SICStus Prolog.
+We used version 4.0.8.
 
-Mutants verifies how well a testing program works, by adding small changes to the files, and sees
-if those changes are detected in the testing. The testing.pl has many tests implemented. The mutant files
-have intentionally implemented bugs in them. There are brief explanations of them in the files, see the
-mutant_overview.txt for more information. 
+RUNNING
+-------
+In order to run all planners you can used scripts
+./run.sh forward
+./run.sh backward
+./run.sh all
+Script will sequentialy run all scripts for all domain. However there is a time
+limit , which is specified in common.pl. When the time limit is exceeded script
+will give up with actual domain and try the following one.
+All errors are written to file error.log.
 
-Why non-monotone heuristic may need to revisit nodes:
-https://cs.stackexchange.com/questions/53956/monotone-property-of-heuristic-in-a-algorithm
+Each time that script is running new statistics are append to files in directory
+output/. The average values are computed in files *.avg, which are also used for
+generating graphs.
 
-Why admissible (non-overestimating) heuristic run optimal: 
-https://en.wikipedia.org/wiki/Admissible_heuristic
+Graphs
+------
+There is one more script that someone can used to create nice graphs. To do that
+someone need installed gnuplot. Once the script run.sh is done, someone can
+run script ./plot.sh to create graph which are stored in directory charts/.
 
-General information about a-star in nice slides: 
-https://courses.cs.duke.edu/fall11/cps149s/notes/a_star.pdf
-
-Some other nice slides:
-http://www.cs.toronto.edu/~sheila/384/w14/Lectures/csc384w14-Lecture02-HeuristicSearch-4pp.pdf
-
-More about consistent / monotone heuristics: 
-https://en.wikipedia.org/wiki/Consistent_heuristic
+AUTHOR
+------
+Robet Sasak
+robert.sasak@gmail.com
