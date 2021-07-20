@@ -47,13 +47,14 @@ a_star(PQ, V, Solution, C):-
 next_node(SR, Q, V, E, NewSR):-
 		state_record(S, _, _, D, SR),
 		step(S, A, NewS),
-		state_record(NewS, _, _, _, Temp),
-		\+ my_ord_member(NewS, V),
-		heap_to_list(Q, PQL),
-		\+ member(Temp, PQL),
+%		state_record(NewS, _, _, _, Temp),
+%		\+ my_ord_member(NewS, V),
+%		heap_to_list(Q, PQL),
+%		\+ member(Temp, PQL),
 		h(S, H),
 		E is H+D,
 		ND is D+1,
+		\+ weighted_member(NewS, V, ND),
 		state_record(NewS, S, A, ND, NewSR).
 
 %add_list_to_heap(+OldHeap, List, NewHeap)
@@ -68,3 +69,28 @@ my_ord_member(S, [SR|_]):-
 		!.
 my_ord_member(S, [_|T]):-
 		my_ord_member(S, T).
+
+% Checks if S is in the list V with a higher cost.
+% If S's state is in V but with a higher cost (deep), then it fails (a-star re-visits).
+% This test is needed for non-monotonic heuristic if you want an optimal solution,
+% but if not, it runs faster with my_ord_member. 
+% weighted_member(+State, +Visited, +DeepValue)	
+weighted_member(S, [SR|_], K) :-
+		state_record(S2, _, _, D2, SR),
+		repeating(S, S2),
+		K >= D2,
+		!.
+weighted_member(S, [_|T], K) :-
+		weighted_member(S, T, K).
+
+% Pops from heap, until an unvisited node is found.
+% my_pop(OldHeap, Visited, Datum, NewHeap)
+my_pop(OH, K, SR, NH, V) :-
+		get_from_heap(OH, K, SR, NH),
+		SR = [S, _, _, D], 
+%		\+ my_ord_member(S, V), % This is faster
+		\+ weighted_member(S, V, D), % This is essential for non-monotone heuristics
+		!.
+my_pop(OH, K, D, NH, V) :-
+		get_from_heap(OH, _, _, CurrentHeap), 
+		my_pop(CurrentHeap, K, D, NH, V).
