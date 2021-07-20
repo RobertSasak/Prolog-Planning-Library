@@ -15,6 +15,36 @@ get_solution(DomainFile, ProblemFile, L) :-
                 length(S, L),
                 !.
 
+
+% This added predicate checks for the minimal node, so that an optimal
+% solution will always be given.
+% This predicate is mandatory in exchange for "solution" when nodes have
+% been revisited (for example with a non-monotone heuristic for a-star)
+% if you want an optimal solution.
+% solution2(+StateRecord, +Visited, -ListOfActions) 
+solution2(SR, V, L):-
+                solution2(SR, V, [], L).
+solution2(SR, _, L, L):-
+                state_record(_, nil, nil, _, SR), !.
+solution2(SR, V, R, L):-
+                state_record(_, PS, AD, _, SR),
+                findall(Prev, (state_record(PS, _, _, _, Prev), member(Prev, V)), Trail),
+                choose_min_prev(Trail, Min), 
+                solution2(Min, V, [AD|R], L).
+
+% When there are multiple nodes to backtrack to, this chooses the one with lowest depth
+% choose_min_prev(+List, -Minimum)
+choose_min_prev([H|T], Min) :- choose_min_prev(T, H, Min).
+
+choose_min_prev([], Min, Min) :- !.
+choose_min_prev([H|T], Current, Min) :-
+                state_record(_, _, _, D_Current, Current),
+                state_record(_, _, _, D_New, H),
+                D_New < D_Current,
+                choose_min_prev(T, H, Min).
+choose_min_prev([_|T], Current, Min) :-
+                choose_min_prev(T, Current, Min).
+
 % The following are a number of printing predicates. These are really handy 
 % for debugging. 
 
@@ -104,4 +134,3 @@ print_problem(problem(Name, Domain, _R, OD, I, G, _Unknown, _MS, _LS)) :-
 %                print('Unkown: '), print(Unknown), nl,
 %                print('MS: '), print(MS), nl,
 %                print('LS: '), print(LS), nl.
-
