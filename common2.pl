@@ -15,6 +15,7 @@ get_solution(DomainFile, ProblemFile, L) :-
                 length(S, L),
                 !.
 
+
 % This added predicate checks for the minimal node, so that an optimal
 % solution will always be given.
 % This predicate is mandatory in exchange for "solution" when nodes have
@@ -133,5 +134,3 @@ print_problem(problem(Name, Domain, _R, OD, I, G, _Unknown, _MS, _LS)) :-
 %                print('Unkown: '), print(Unknown), nl,
 %                print('MS: '), print(MS), nl,
 %                print('LS: '), print(LS), nl.
-
-
