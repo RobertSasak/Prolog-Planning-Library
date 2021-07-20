@@ -23,16 +23,19 @@ a_star(S, A, C):-
 a_star(PQ, _, 'NO SOLUTION', _):-
 		empty_heap(PQ),!.
 a_star(PQ, V, Solution, C):-
-		get_from_heap(PQ, C, SR, _),
+		my_pop(PQ, C, SR, _, V),
+%		get_from_heap(PQ, C, SR, _),
 		state_record(S, _, _, _, SR),
 		is_goal(S),
 %		write('FOUND SOLUTION'),nl,
 %		state_record(S, _, _, D, SR), write(C-D), write('   '),write(S),nl,
 %		writel(V),nl,halt,
-		solution(SR, V, Solution).
+		solution2(SR, V, Solution).
+%		solution(SR, V, Solution).
 
 a_star(PQ, V, Solution, C):-
-		get_from_heap(PQ, _K, SR, RPQ),
+		my_pop(PQ, _K, SR, RPQ, V),
+%		get_from_heap(PQ, _K, SR, RPQ),	
 		ord_add_element(V, SR, NV),
 		(bagof(K-NS, next_node(SR, PQ, NV, K, NS), NextNodes) ; NextNodes=[]),
 %		state_record(S, _, _, D, SR), write(_K-D), write('   '),write(S),length(NextNodes, L), write(L),nl,
@@ -44,7 +47,7 @@ a_star(PQ, V, Solution, C):-
 		a_star(NPQ, NV, Solution, C).
 
 %next_node(+StateRecord, +Queue, +Visited, -EstimateDeep, -NewStateRecord)
-next_node(SR, Q, V, E, NewSR):-
+next_node(SR, _Q, V, E, NewSR):-
 		state_record(S, _, _, D, SR),
 		step(S, A, NewS),
 %		state_record(NewS, _, _, _, Temp),
