@@ -5,7 +5,8 @@ h(S, E):-
 
 relax(S, 0):-
 		bb_get(fictiveGoal, G),
-		ord_subset(G, S), !.
+		sort(S, S1),
+		ord_subset(G, S1), !.
 relax(S, ND):-
 		setof(P, relax_step(S, P), RS),
 		ord_union([S|RS], NS),
