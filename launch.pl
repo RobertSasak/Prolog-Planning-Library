@@ -5,16 +5,23 @@
 
 :-[readFile, parseProblem, parseDomain, common, common2].
 %:- ['a-star', backward, h_0].
-:-['a-star', forward, h_max].
+%:-['a-star', forward, h_max].
 %:-['a-star', forward, h_diff].
-%:- ['a-star', forward, h_max].
+%:- ['a-star', forward, h_0].
 %:- ['bfs', forward, h_0].
 %:-['dfs', 'forward', h_0].
 %:-['wa-star', forward, h_add].
+:-['a-star', forward, h_dist].
 
-%:- solve_files('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-1.pddl').
-%:- solve_files('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-2.pddl').
+% Shuffling
+:- solve_files('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-1.pddl').
+:- solve_files('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-2.pddl').
+:- solve_files('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-3.pddl').
+:- solve_files('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-4.pddl').
+:- solve_files('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-5.pddl').
 :- solve_files('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-6.pddl').
+:- solve_files('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-7.pddl').
+:- solve_files('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-8.pddl').
 
 % Various medium sized problems
 %:- solve_files('test/sliding/sliding_domain.pddl', 'test/sliding/sliding3x3-2.pddl').

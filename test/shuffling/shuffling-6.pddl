@@ -1,4 +1,4 @@
-(define (problem shuffling-5)
+(define (problem shuffling-6)
 (:domain shuffling_domain)
 (:objects block1 block2 block3 block4 block5 block6
           pos1 pos2 pos3 pos4 pos5 pos6)
