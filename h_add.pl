@@ -9,22 +9,17 @@ h(S, E):-
 
 relax(_, [], 0):-!.
 relax(S, G, E):-
-%		print('E'),
     		subtract(G, S, Delta),
-%		print(Delta), nl,
-		setof(P1, (relax_step(S, P), sort(P, P1)), RS),
-		sort(S, S1), sort(RS, RS1),
+		setof(P, relax_step(S, P), RS),
+		sort(S, S1), sort(RS, RS1), % I am not sure if this is necessary
 		ord_union([S1|RS1], NS),
-%		print(RS), nl,
-%		print(NS), nl, nl,
     		relax(NS, Delta, NE),
 		length(Delta, LD),
-		E is LD+NE,
-		print(E), nl.
+		E is LD+NE.
 
 relax_step(State, PE):-
 %		print('e'),
 		get_action(A),	get_precondition(A, P),
 		mysubset(P, State), %print_state(State),
-		get_positiv_effect(A, PE).
+		get_positiv_effect(A, PE1), sort(PE1, PE).
 %		print('a').
