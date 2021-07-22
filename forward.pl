@@ -22,6 +22,7 @@ step(State, ActionDef, NewState):-
 		get_negativ_effect(A, NE), ord_subtract(State, NE, State2),	
 		get_positiv_effect(A, PE), ord_union(State2, PE, NewState).
 
+
 is_goal(S):-
 		get_goal(G),
 		ord_subset(G, S).
