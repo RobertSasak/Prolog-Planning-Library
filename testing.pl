@@ -24,8 +24,8 @@
 
 :-[readFile, parseProblem, parseDomain, common, common2].
 %:- ['a-star', forward, h_add].
-%:- ['a-star', forward, h_0].
-:- ['a-star', forward, h_max].
+:- ['a-star', forward, h_0].
+%:- ['a-star', forward, h_max].
 %:- ['a-star', forward, h_diff].
 
 :- begin_tests(test_hanoi).
@@ -69,7 +69,46 @@ test(hanoi5) :-
 
 :- end_tests(test_hanoi).
 
-:- begin_tests(sliding_puzzle).
+:- begin_tests(shuffling).
+
+test(shuffling-1) :-
+        get_solution('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-1.pddl', X),
+        (X =:= 1;
+%       print('Shuffling-1 passed'), nl; 
+        (nl, print(' ===> '), print('Shuffling-1 failed, expected 1, computed: '), print(X), 
+        print(' <==='), nl, nl, fail)), !.
+
+test(shuffling-2) :-
+        get_solution('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-2.pddl', X),
+        (X =:= 1;
+%       print('Shuffling-2 passed'), nl; 
+        (nl, print(' ===> '), print('Shuffling-2 failed, expected 1, computed: '), print(X), 
+        print(' <==='), nl, nl, fail)), !.
+
+test(shuffling-3) :-
+        get_solution('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-3.pddl', X),
+        (X =:= 1;
+%       print('Shuffling-3 passed'), nl; 
+        (nl, print(' ===> '), print('Shuffling-3 failed, expected 1, computed: '), print(X), 
+        print(' <==='), nl, nl, fail)), !.
+
+test(shuffling-4) :-
+        get_solution('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-4.pddl', X),
+        (X =:= 2;
+%       print('Shuffling-4 passed'), nl; 
+        (nl, print(' ===> '), print('Shuffling-4 failed, expected 1, computed: '), print(X), 
+        print(' <==='), nl, nl, fail)), !.
+
+test(shuffling-5) :-
+        get_solution('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-5.pddl', X),
+        (X =:= 1;
+%       print('Shuffling-5 passed'), nl; 
+        (nl, print(' ===> '), print('Shuffling-5 failed, expected 1, computed: '), print(X), 
+        print(' <==='), nl, nl, fail)), !.
+        
+:- end_tests(shuffling).
+
+:- begin_tests(sliding).
 
 test(sliding2x2-1) :-
         get_solution('test/sliding/sliding_domain.pddl', 'test/sliding/sliding2x2-1.pddl', X),
@@ -134,9 +173,7 @@ test(sliding4x4-2) :-
         (nl, print(' ===> '), print('Sliding4x4-2 failed, expected 3, computed: '), print(X), 
          print(' <==='), nl, nl, fail)), !.
 
-        
-
-:- end_tests(sliding_puzzle).
+:- end_tests(sliding).
 
 :- begin_tests(gripper).
 
