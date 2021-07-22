@@ -22,6 +22,8 @@
 :- solve_files('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-6.pddl').
 :- solve_files('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-7.pddl').
 :- solve_files('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-8.pddl').
+%:- solve_files('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-9.pddl').
+%:- solve_files('test/shuffling/shuffling_domain.pddl', 'test/shuffling/shuffling-10.pddl').
 
 % Various medium sized problems
 %:- solve_files('test/sliding/sliding_domain.pddl', 'test/sliding/sliding3x3-2.pddl').

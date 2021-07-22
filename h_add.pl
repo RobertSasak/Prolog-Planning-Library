@@ -17,9 +17,7 @@ relax(S, G, E):-
 		length(Delta, LD),
 		E is LD+NE.
 
-relax_step(State, PE):-
-%		print('e'),
+relax_step(State, PE) :-
 		get_action(A),	get_precondition(A, P),
-		mysubset(P, State), %print_state(State),
+		mysubset(P, State), 
 		get_positiv_effect(A, PE1), sort(PE1, PE).
-%		print('a').

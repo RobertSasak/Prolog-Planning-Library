@@ -14,9 +14,4 @@ facts in the goal state that are not fulfilled in the current state, h_diff esti
 3shuffle. This means that h_diff can overestimate, and thereby not giving the optimal
 solution. 
 
-However, the domain does not run at all as expected. The solver returns many excessive 
-moves, and often places the same block on many positions. The bug is not caused by the 
-domain, but rather the sorted assumption for "step" in forward.pl. The step predicate
-assumes that the sets (Precondition, Positive Effect and Negative Effect) are sorted.
-They are sorted after functor, but not after arguments. The set-operations assumes that
-they are correctly sorted. This makes the behaviour very strange and wrong. 
+The h_dist is specially implemented for this domain. 
