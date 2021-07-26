@@ -24,8 +24,8 @@
 
 :-[readFile, parseProblem, parseDomain, common, common2].
 %:- ['a-star', forward, h_add].
-:- ['a-star', forward, h_0].
-%:- ['a-star', forward, h_max].
+%:- ['a-star', forward, h_0].
+:- ['a-star', forward, h_max].
 %:- ['a-star', forward, h_diff].
 
 :- begin_tests(test_hanoi).

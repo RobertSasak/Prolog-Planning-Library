@@ -65,7 +65,7 @@ term_to_ord_term(T, OT):-
 % mysubset(+Subset, +Set)
 % It is similar to subset/2. Subset can include free variables that are 
 % grounded with atoms of Set.
-mysubset([], _).
+mysubset([], _) :- !.
 mysubset([X|R], S):- member(X, S), mysubset(R, S).
 
 

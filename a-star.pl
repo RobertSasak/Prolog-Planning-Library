@@ -24,7 +24,6 @@ a_star(PQ, _, 'NO SOLUTION', _):-
 		empty_heap(PQ),!.
 a_star(PQ, V, Solution, C):-
 		my_pop(PQ, C, SR, _, V),
-%		print_node(SR),
 %		get_from_heap(PQ, C, SR, _),
 		state_record(S, _, _, _, SR),
 		is_goal(S),
@@ -36,7 +35,6 @@ a_star(PQ, V, Solution, C):-
 
 a_star(PQ, V, Solution, C):-
 		my_pop(PQ, _K, SR, RPQ, V),
-%		print_node(SR),
 %		get_from_heap(PQ, _K, SR, RPQ),	
 		ord_add_element(V, SR, NV),
 		(bagof(K-NS, next_node(SR, PQ, NV, K, NS), NextNodes) ; NextNodes=[]),

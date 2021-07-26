@@ -5,7 +5,8 @@ h(S, E):-
 
 relax(S, 0):-
 		bb_get(fictiveGoal, G),
-		ord_subset(G, S), !.
+		sort(S, S1),
+		ord_subset(G, S1), !.
 relax(S, ND):-
 		setof(P, relax_step(S, P), RS),
 		ord_union([S|RS], NS),
@@ -15,4 +16,4 @@ relax(S, ND):-
 relax_step(State, PE):-
 		get_action(A),	get_precondition(A, P),
 		mysubset(P, State),
-		get_positiv_effect(A, PE).
+		get_positiv_effect(A, PE1), sort(PE1, PE).
