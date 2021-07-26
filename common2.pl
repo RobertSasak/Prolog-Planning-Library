@@ -45,6 +45,22 @@ choose_min_prev([H|T], Current, Min) :-
 choose_min_prev([_|T], Current, Min) :-
                 choose_min_prev(T, Current, Min).
 
+% Show solution statistics without bits and path
+%show_statistic(+Problem, +Solution).
+show_statistic2(P, S):-
+                ground(S),
+                get_problem_name(P, Name),
+                bb_get(stat_nodes, N),
+                bb_get(startTime, T0),
+                statistics(runtime, [T1,_]),
+%                statistics(memory, [M, _]),
+                T is T1-T0,
+                length(S, L),
+                format('~a ~3d ~d ~d', [Name,T, N, L]),
+%                solution_to_lisp(S),
+                nl, !.
+show_statistic2(_, _).
+
 % The following are a number of printing predicates. These are really handy 
 % for debugging. 
 
